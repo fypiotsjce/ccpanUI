@@ -11,7 +11,6 @@ import { AdminAuthComponent } from './components/auth/admin-auth/admin-auth.comp
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-
 @NgModule({
   declarations: [
     AppComponent,
