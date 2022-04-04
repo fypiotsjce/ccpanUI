@@ -21,6 +21,7 @@ import { MynetworksComponent } from './components/mynetworks/mynetworks.componen
 import { DevicesComponent } from './components/devices/devices.component';
 import { AboutusComponent } from './components/aboutus/aboutus.component';
 import { UserloginComponent } from './components/auth/userlogin/userlogin.component';
+import { CardsComponent } from './components/common/cards/cards.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { UserloginComponent } from './components/auth/userlogin/userlogin.compon
     MynetworksComponent,
     DevicesComponent,
     AboutusComponent,
-    UserloginComponent
+    UserloginComponent,
+    CardsComponent
   ],
   imports: [
     BrowserModule,
