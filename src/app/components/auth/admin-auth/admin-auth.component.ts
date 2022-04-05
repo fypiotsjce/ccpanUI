@@ -49,7 +49,7 @@ export class AdminAuthComponent implements OnInit {
       this.adminAuthRes = this.tempStr.authResp;
       console.log("Admin-auth-comp testpost post-response : ", this.tempStr);
       console.log("Admin-auth-comp testpost post-response AuthRes: ", this.adminAuthRes);
-      if (this.tempStr.authCode === 200) {
+      if (this.tempStr.authCode === '200') {
         this.adminLogged = true;
       }
       else {
