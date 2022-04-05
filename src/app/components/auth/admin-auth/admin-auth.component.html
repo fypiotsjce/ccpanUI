@@ -1,0 +1,27 @@
+
+<mat-card>
+<button (click)="test()">Test</button>
+
+<div class="container custom-container" *ngIf="!adminLogged">
+    <div class="col-md-12">
+        <h3 class="mb-3 text-center">Admin Login</h3>
+        <div class="form-group">
+            <input type="text" [(ngModel)]="adminLogin.uid" class="form-control" placeholder="UID">
+        </div>
+        <br>
+        <div class="form-group">
+            <input type="text" [(ngModel)]="adminLogin.pin" class="form-control" placeholder="PIN">
+        </div>
+        <br>
+        <div class="form-group">
+            <button class="btn btn-success btn-lg btn-block" (click)="testpost(adminLogin)">Login</button>
+        </div>
+    </div>
+    <p>Login response : {{adminAuthRes}}</p>
+    <p>Login code : {{adminLogged}}</p>
+</div>
+<div *ngIf="adminLogged">
+    <button (click) = "adminLogout()">Logout</button>
+    This div will be visible only if admin is logged
+</div>
+</mat-card>

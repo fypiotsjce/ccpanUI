@@ -1,0 +1,67 @@
+<mat-sidenav-container class="sidenav-container" fullscreen>
+    <mat-sidenav #drawer fixedInViewport [attr.role]="(isHandset | async) ? 'dialog':'navigation' "
+    [mode] = "(isHandset | async) ? 'over': 'side'" [opened] = "false">
+
+    <mat-toolbar>
+        Menu
+    </mat-toolbar>
+    
+    <mat-nav-list>
+            <a mat-list-item routerLink = "/" (click)= "drawer.close()">🏠 Getting started</a>
+            <a mat-list-item routerLink = "/login" (click)= "drawer.close()">🔑 Login</a>
+            <a mat-list-item routerLink="/">⛑ Network health</a>
+            <a mat-list-item routerLink="/">🔬 Diagnostics</a>
+            <a mat-list-item routerLink="/devices">👩🏽 My Devices</a>
+            <a mat-list-item routerLink = "/aboutus" (click)= "drawer.close()">🍱 About Us</a>
+            <a mat-list-item routerLink = "/networks" (click)= "drawer.close()">🏕 My networks</a>
+            
+    </mat-nav-list>
+
+    </mat-sidenav>
+    
+     <mat-sidenav-content> 
+       
+         <mat-toolbar>
+             <button 
+             mat-icon-button
+             type="button"
+             aria-label="see menu"
+             (click) = "drawer.toggle()"
+             *ngIf = "isHandset | async">
+             <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+            </button>
+            <div class="logo">
+                <i class="material-icons">wifi_tethering</i>
+                <span class="logo" routerLink="/">CCPAN</span>
+            </div>
+            
+            
+
+            <span class="fill-space"></span>
+
+            <div *ngIf = "!(isHandset | async)">
+
+                
+               
+                <a mat-button routerLink="/">⛑ Network health</a>
+                <a mat-button routerLink="/"> 🔬 Diagnostics</a>
+                <a mat-button routerLink="/devices">  👩🏽 My Devices</a>
+                <a mat-button routerLink = "/aboutus" (click)= "drawer.close()">🍱 About Us</a>
+                <a mat-button routerLink = "/networks" (click)= "drawer.close()">🏕 My networks</a>
+            <a mat-button routerLink="/login"  class="loginbox" >🔑 Login</a>
+
+            </div>
+
+            
+
+         </mat-toolbar>
+
+         <div class="main-content">
+            <ng-content></ng-content>
+         </div>
+           
+         
+         <app-footer></app-footer>
+     </mat-sidenav-content>
+    
+</mat-sidenav-container>

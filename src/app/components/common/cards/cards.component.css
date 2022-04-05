@@ -1,0 +1,14 @@
+mat-card{
+    border-radius: 1rem;
+}
+
+mat-card:hover{
+    border: 1px solid rgba(31,122,224,.4);
+    box-shadow: 0 3px 10px 0 rgb(0 0 0 / 7%);
+    transform: translateY(-5px);
+
+}
+
+.card-title{
+    color: #1f7ae0;
+}
