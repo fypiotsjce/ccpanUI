@@ -14,6 +14,8 @@ export class AdminAuthComponent implements OnInit {
   //post call objects
   httppost:any;
   adminAuthRes:any;
+  tempStr:any;
+  adminLogged = false;
 
   public adminLogin = {uid: undefined, pin: undefined};
 
@@ -23,6 +25,13 @@ export class AdminAuthComponent implements OnInit {
   constructor(public adminAuth: AdminAuthService) { }
 
   ngOnInit(): void {
+    this.adminLogged = false;
+
+  }
+
+  adminLogout() {
+    this.adminLogged = false;
+    this.adminAuthRes = "";
   }
 
   test() {
@@ -36,8 +45,16 @@ export class AdminAuthComponent implements OnInit {
   testpost(a:any) {
     console.log("Admin-auth-comp testpost posting-request");
     this.adminAuth.testpost(a).subscribe(data => {
-      this.adminAuthRes = data;
+      this.tempStr = data;
+      this.adminAuthRes = this.tempStr.authResp;
+      console.log("Admin-auth-comp testpost post-response : ", this.tempStr);
+      console.log("Admin-auth-comp testpost post-response AuthRes: ", this.adminAuthRes);
+      if (this.tempStr.authCode === '200') {
+        this.adminLogged = true;
+      }
+      else {
+        this.adminLogged = false;
+      }
     });
-    console.log("Admin-auth-comp testpost post-response : ", this.adminAuthRes);
   }
-}
+} 

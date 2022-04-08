@@ -1,7 +1,8 @@
 
 <mat-card>
 <button (click)="test()">Test</button>
-<div class="container custom-container">
+
+<div class="container custom-container" *ngIf="!adminLogged">
     <div class="col-md-12">
         <h3 class="mb-3 text-center">Admin Login</h3>
         <div class="form-group">
@@ -17,5 +18,10 @@
         </div>
     </div>
     <p>Login response : {{adminAuthRes}}</p>
+    <p>Login code : {{adminLogged}}</p>
+</div>
+<div *ngIf="adminLogged">
+    <button (click) = "adminLogout()">Logout</button>
+    This div will be visible only if admin is logged
 </div>
 </mat-card>
