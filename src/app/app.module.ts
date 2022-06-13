@@ -22,6 +22,8 @@ import { DevicesComponent } from './components/devices/devices.component';
 import { AboutusComponent } from './components/aboutus/aboutus.component';
 import { UserloginComponent } from './components/auth/userlogin/userlogin.component';
 import { CardsComponent } from './components/common/cards/cards.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+
 
 @NgModule({
   declarations: [
@@ -49,7 +51,8 @@ import { CardsComponent } from './components/common/cards/cards.component';
     MatIconModule,
     MatSidenavModule,
     MatListModule,
-    MatCardModule
+    MatCardModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

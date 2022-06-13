@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AdminAuthService } from 'src/app/services/auth/admin-auth/admin-auth.service';
 import { FormGroup, FormControl } from '@angular/forms';
+import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-auth',
@@ -14,47 +17,46 @@ export class AdminAuthComponent implements OnInit {
   //post call objects
   httppost:any;
   adminAuthRes:any;
-  tempStr:any;
   adminLogged = false;
+  isAdmin = false;
 
   public adminLogin = {uid: undefined, pin: undefined};
 
 
   formControl = new FormControl('');
 
-  constructor(public adminAuth: AdminAuthService) { }
+  constructor(public adminAuth: AdminAuthService,private router:Router) { }
 
   ngOnInit(): void {
     this.adminLogged = false;
-
+    this.isAdmin = false;
   }
 
   adminLogout() {
-    this.adminLogged = false;
+    this.adminLogged = this.adminAuth.adminLogout();
+    this.isAdmin = false;
     this.adminAuthRes = "";
   }
 
-  test() {
-    console.log("Admin-auth-comp test getting-data");
-    this.adminAuth.test().subscribe((data: {}) => {
-      this.httpdata = data;
-    });
-    console.log("Admin-auth-comp test got-data : ", this.httpdata);
-  }
+ 
+  
 
-  testpost(a:any) {
-    console.log("Admin-auth-comp testpost posting-request");
-    this.adminAuth.testpost(a).subscribe(data => {
-      this.tempStr = data;
-      this.adminAuthRes = this.tempStr.authResp;
-      console.log("Admin-auth-comp testpost post-response : ", this.tempStr);
-      console.log("Admin-auth-comp testpost post-response AuthRes: ", this.adminAuthRes);
-      if (this.tempStr.authCode === '200') {
+ async  loginAdmin(formData:any) {
+    console.log("Admin login.....");
+    console.log(formData);
+    try{
+      this.adminAuthRes = await this.adminAuth.adminLogin(formData).toPromise();
+      if(this.adminAuthRes.authResp == "Success"){
         this.adminLogged = true;
+        this.isAdmin = true;
+        console.log("admin logged in succesfuly");
+        this.router.navigate([''])
       }
-      else {
-        this.adminLogged = false;
-      }
-    });
+      
+    }catch(err){
+      console.log(err);
+    }
+   
+  
   }
 } 

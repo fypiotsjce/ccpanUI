@@ -6,14 +6,20 @@
         Menu
     </mat-toolbar>
     
-    <mat-nav-list>
+    <mat-nav-list *ngIf="!isAdmin()" >
             <a mat-list-item routerLink = "/" (click)= "drawer.close()">🏠 Getting started</a>
-            <a mat-list-item routerLink = "/login" (click)= "drawer.close()">🔑 Login</a>
-            <a mat-list-item routerLink="/">⛑ Network health</a>
-            <a mat-list-item routerLink="/">🔬 Diagnostics</a>
+            <a mat-list-item routerLink = "/login" *ngIf = "!isLoggedIn()" (click)= "drawer.close()">🔑 Login</a>
+            <a mat-list-item routerLink = "/login" *ngIf = "isLoggedIn()" (click)= "logout()">🔑 Logout</a>
             <a mat-list-item routerLink="/devices">👩🏽 My Devices</a>
             <a mat-list-item routerLink = "/aboutus" (click)= "drawer.close()">🍱 About Us</a>
             <a mat-list-item routerLink = "/networks" (click)= "drawer.close()">🏕 My networks</a>
+            
+    </mat-nav-list>
+
+    <mat-nav-list *ngIf="isAdmin()" >
+            <span (click)= "drawer.close()">Admin </span>
+            <a mat-list-item routerLink = "/login" (click)= "logout()">🔑 Logout</a>
+            
             
     </mat-nav-list>
 
@@ -39,17 +45,23 @@
 
             <span class="fill-space"></span>
 
-            <div *ngIf = "!(isHandset | async)">
+            <div *ngIf = "!(isHandset | async) && !isAdmin()">
 
-                
-               
-                <a mat-button routerLink="/">⛑ Network health</a>
-                <a mat-button routerLink="/"> 🔬 Diagnostics</a>
+              
                 <a mat-button routerLink="/devices">  👩🏽 My Devices</a>
                 <a mat-button routerLink = "/aboutus" (click)= "drawer.close()">🍱 About Us</a>
                 <a mat-button routerLink = "/networks" (click)= "drawer.close()">🏕 My networks</a>
-            <a mat-button routerLink="/login"  class="loginbox" >🔑 Login</a>
+            <a mat-button routerLink="/login" *ngIf = "!isLoggedIn()" class="loginbox" >🔑 Login</a>
+            <a mat-button routerLink="/login" *ngIf = "isLoggedIn()" class="loginbox" (click)="logout()">🔑 Logout</a>
 
+            </div>
+
+            <div *ngIf="!(isHandset | async) && isAdmin()" >
+                <a mat-button routerLink = "/" (click)= "drawer.close()">You are logged in as admin </a>
+                <a mat-button routerLink = "/login" (click)= "logout()">🔑 Logout</a>
+               
+                 
+                
             </div>
 
             

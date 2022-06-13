@@ -1,6 +1,6 @@
 
 <mat-card>
-<button (click)="test()">Test</button>
+
 
 <div class="container custom-container" *ngIf="!adminLogged">
     <div class="col-md-12">
@@ -14,14 +14,15 @@
         </div>
         <br>
         <div class="form-group">
-            <button class="btn btn-success btn-lg btn-block" (click)="testpost(adminLogin)">Login</button>
+            <button
+            (click)="loginAdmin(adminLogin)"
+            mat-raised-button
+            color="accent"
+            type="submit">Login</button>
+            
+          
         </div>
     </div>
-    <p>Login response : {{adminAuthRes}}</p>
-    <p>Login code : {{adminLogged}}</p>
-</div>
-<div *ngIf="adminLogged">
-    <button (click) = "adminLogout()">Logout</button>
-    This div will be visible only if admin is logged
+    
 </div>
 </mat-card>

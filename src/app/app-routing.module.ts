@@ -6,16 +6,17 @@ import { UserloginComponent } from './components/auth/userlogin/userlogin.compon
 import { DevicesComponent } from './components/devices/devices.component';
 import { GetStartedComponent } from './components/get-started/get-started/get-started.component';
 import { MynetworksComponent } from './components/mynetworks/mynetworks.component';
+import { AuthGuardGuard } from './services/auth-guard.guard';
 
 const routes: Routes = [
   {
     path:'',component:GetStartedComponent
   },
   {
-    path:'devices',component:DevicesComponent
+    path:'devices',component:DevicesComponent,canActivate:[AuthGuardGuard]
   },
   {
-    path:'networks',component:MynetworksComponent
+    path:'networks',component:MynetworksComponent,canActivate:[AuthGuardGuard]
   },
   {
     path:'aboutus',component:AboutusComponent
