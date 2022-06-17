@@ -16,8 +16,14 @@ export class DevicesComponent implements OnInit {
   apiKey:any;
   userDevices:any;
   isLoading:boolean= false;
+  stateChangeObject:any;
+  disableButton:boolean=false;
   
-
+  public httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+    }),
+  };
   constructor(private http:HttpClient) { }
 
   ngOnInit(): void {
@@ -52,6 +58,31 @@ console.log(this.userDevices);
     return throwError(() => {
       return errorMessage;
     });
+  }
+
+ async changeState(addr:any,gpio:any,beforeState:any){
+    this.disableButton = true;
+    let state = this.toggleState(beforeState);
+    this.stateChangeObject = {
+      "did":this.uid,
+      "dapi":this.apiKey,
+      "addr":addr,
+      "gpio":gpio,
+      "state":state
+    }
+   let stateResponse = await this.http.post(this.apiURL+"5001/device_gui/putdata",this.stateChangeObject,{responseType: 'text'})
+   .pipe(
+    catchError(this.handleError.bind(this))).toPromise();
+   this.disableButton = false;
+   this.getDevices()
+   console.log(stateResponse);
+  }
+
+  toggleState(beforeState:any){
+    if(beforeState == 0){
+      return 1
+    }
+    return 0
   }
 
 }
