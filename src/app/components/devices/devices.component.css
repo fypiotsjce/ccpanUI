@@ -66,3 +66,7 @@ mat-title{
 mat-card-subtitle{
     padding: 11px;
 }
+
+button[disabled=disabled], button:disabled{
+    background-color: azure;
+}
