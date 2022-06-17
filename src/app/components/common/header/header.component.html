@@ -58,7 +58,7 @@
 
             <div *ngIf="!(isHandset | async) && isAdmin()" >
                 <a mat-button routerLink = "/" (click)= "drawer.close()">You are logged in as admin </a>
-                <a mat-button routerLink = "/login" (click)= "logout()">🔑 Logout</a>
+                <a mat-raised-button routerLink = "/login" (click)= "logout()">🔑 Logout</a>
                
                  
                 

@@ -32,15 +32,6 @@ export class AdminAuthComponent implements OnInit {
     this.isAdmin = false;
   }
 
-  adminLogout() {
-    this.adminLogged = this.adminAuth.adminLogout();
-    this.isAdmin = false;
-    this.adminAuthRes = "";
-  }
-
- 
-  
-
  async  loginAdmin(formData:any) {
     console.log("Admin login.....");
     console.log(formData);

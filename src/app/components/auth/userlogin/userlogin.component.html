@@ -1,1 +1,27 @@
-<p>userlogin works!</p>
+
+<mat-card>
+
+
+    <div class="container custom-container" *ngIf="!adminLogged">
+        <div class="col-md-12">
+            <h1 >User Login</h1>
+            <div class="form-group">
+                <input type="text" [(ngModel)]="adminLogin.uid" class="form-control inpt-style" placeholder="UID">
+            </div>
+            <br>
+            <div class="form-group">
+                <input type="password" [(ngModel)]="adminLogin.pin" class="form-control inpt-style" placeholder="PIN">
+            </div>
+            <br>
+            <div class="form-group ">
+                <button
+                (click)="loginAdmin(adminLogin)"
+                mat-raised-button
+                color="accent"
+                class="btn-style"
+                type="submit">Login</button>
+            </div>
+        </div>
+        
+    </div>
+    </mat-card>

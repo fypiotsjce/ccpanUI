@@ -3,6 +3,7 @@ import { BreakpointObserver,Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map,shareReplay } from 'rxjs';
 import { AdminAuthService } from 'src/app/services/auth/admin-auth/admin-auth.service';
+import { UserAuthService } from 'src/app/services/auth/user-auth.service';
 
 @Component({
   selector: 'app-header',
@@ -11,7 +12,7 @@ import { AdminAuthService } from 'src/app/services/auth/admin-auth/admin-auth.se
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private breakpointbserver:BreakpointObserver,public adminAuth: AdminAuthService) { }
+  constructor(private breakpointbserver:BreakpointObserver,public adminAuth: AdminAuthService,public userAuth:UserAuthService) { }
 
   isHandset:Observable<boolean> = this.breakpointbserver.observe([Breakpoints.Handset,]).pipe(
     map((result: { matches: any; }) => result.matches),
@@ -22,8 +23,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.isAdminUser = this.adminAuth.isAdmin;
-    this.isLogged = this.adminAuth.isLoggedIn;
-   
+    this.isLogged = this.adminAuth.isLoggedIn && this.userAuth.isLoggedIn;
   }
 
   isAdmin(){
@@ -31,11 +31,14 @@ export class HeaderComponent implements OnInit {
   }
 
   isLoggedIn(){
-    return this.adminAuth.isLoggedIn;
+    return this.adminAuth.isLoggedIn || this.userAuth.isLoggedIn;
   }
 
  logout(){
-   this.adminAuth.adminLogout();
+  if(this.isAdmin()){
+    this.adminAuth.adminLogout();
+  }
+   this.userAuth.userLogout();
  }
 
 }

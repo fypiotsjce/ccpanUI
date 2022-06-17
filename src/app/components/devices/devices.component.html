@@ -1,1 +1,31 @@
-<p>devices works!</p>
+
+<div *ngIf="!isLoading">
+<div class = "grid">
+<div *ngFor = "let device of userDevices" fxLayout="row wrap" fxLayoutGap="16px grid" class = "flex">
+    <mat-card fxFlex="33%"  fxFlex.xs="100%" fxFlex.sm="50%">
+        <mat-card-title>
+            🏡 Adress  {{device[0]}}
+        </mat-card-title>
+        <mat-card-subtitle>
+            GPIO {{device[1]}}
+        </mat-card-subtitle>
+        <mat-card-subtitle>
+           <div *ngIf="device[2]==0" class="on">🟢 ON</div>
+           <div *ngIf="device[2]==1" class="off">🔴 OFF</div>
+           
+        
+          
+
+
+
+        </mat-card-subtitle>
+        <mat-card-actions><button class="button"><div>🔓 TOGGLE STATE</div></button></mat-card-actions>
+        
+        
+    </mat-card>
+</div>
+</div>
+</div>
+<div *ngIf="isLoading" class="loading-spinner">
+    <mat-spinner></mat-spinner>
+</div>

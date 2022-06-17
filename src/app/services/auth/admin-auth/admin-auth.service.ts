@@ -37,7 +37,7 @@ export class AdminAuthService implements OnInit{
   
 
   adminLogin(formdata:any) {
-    console.log("Adm-auth-service testpost posting-data");
+    console.log("Admin auth login");
     this.isAdmin = true;
     this.isLoggedIn = true;
     return this.http

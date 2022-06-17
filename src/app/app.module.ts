@@ -23,6 +23,8 @@ import { AboutusComponent } from './components/aboutus/aboutus.component';
 import { UserloginComponent } from './components/auth/userlogin/userlogin.component';
 import { CardsComponent } from './components/common/cards/cards.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+
 
 
 @NgModule({
@@ -52,7 +54,10 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatSidenavModule,
     MatListModule,
     MatCardModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatProgressSpinnerModule,
+   
+  
   ],
   providers: [],
   bootstrap: [AppComponent]

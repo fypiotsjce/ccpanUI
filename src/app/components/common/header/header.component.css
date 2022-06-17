@@ -100,6 +100,10 @@
   padding-top: 10px;
   margin-top: 5px;
   min-height: 100%;
-  padding-left: 10px;
   text-align: justify;
+}
+
+
+.mat-button{
+  font-size: large !important;
 }
