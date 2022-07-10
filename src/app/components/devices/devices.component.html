@@ -1,10 +1,11 @@
+<mat-card-actions><button class="button1" (click)="getDevices()"><div>Refresh</div></button></mat-card-actions>
 
 <div *ngIf="!isLoading">
 <div class = "grid">
 <div *ngFor = "let device of userDevices" fxLayout="row wrap" fxLayoutGap="16px grid" class = "flex">
     <mat-card fxFlex="33%"  fxFlex.xs="100%" fxFlex.sm="50%">
         <mat-card-title>
-            🏡 Adress  {{device[0]}}
+            🏡 Address  {{device[0]}}
         </mat-card-title>
         <mat-card-subtitle>
             GPIO {{device[1]}}
@@ -14,7 +15,8 @@
            <div *ngIf="device[2]==0" class="off">🔴 OFF</div>
         </mat-card-subtitle>
         <mat-card-actions><button class="button" [disabled]="disableButton" (click)="changeState(device[0],device[1],device[2])"><div>🔓 TOGGLE STATE</div></button></mat-card-actions>
-        
+        <mat-card-actions><button class="button" (click)="openDialog(device[0])"><div>sensor Value</div></button></mat-card-actions>
+
         
     </mat-card>
 </div>

@@ -24,7 +24,8 @@ import { UserloginComponent } from './components/auth/userlogin/userlogin.compon
 import { CardsComponent } from './components/common/cards/cards.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-
+import {MatDialogModule} from '@angular/material/dialog';
+import { DialogComponent } from './components/devices/dialog/dialog.component';
 
 
 @NgModule({
@@ -39,8 +40,11 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     DevicesComponent,
     AboutusComponent,
     UserloginComponent,
-    CardsComponent
+    CardsComponent,
+    DialogComponent,
+    
   ],
+  
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -56,7 +60,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatCardModule,
     MatSnackBarModule,
     MatProgressSpinnerModule,
-   
+   MatDialogModule
   
   ],
   providers: [],

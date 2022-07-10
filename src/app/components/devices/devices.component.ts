@@ -4,6 +4,9 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { catchError, throwError } from 'rxjs';
 import { consts } from 'src/consts';
 
+import { MatDialog } from '@angular/material/dialog';
+import { DialogComponent } from './dialog/dialog.component';
+
 
 @Component({
   selector: 'app-devices',
@@ -24,7 +27,7 @@ export class DevicesComponent implements OnInit {
       'Content-Type': 'application/json',
     }),
   };
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient,public dialog:MatDialog) { }
 
   ngOnInit(): void {
     this.uid = getCookie('uid')
@@ -47,6 +50,19 @@ this.isLoading = false;
 console.log(this.userDevices);
   }
 
+ async  openDialog(nodeid:any){
+  let params = new HttpParams();
+  params = params.append('did',this.uid)
+  params = params.append('dapi',this.apiKey)
+  params = params.append('nodeid',nodeid)
+ let data = await  this.http
+.get<any>(this.apiURL + "5011/device_sen/getdata",{params:params}).pipe(
+  catchError(this.handleError.bind(this)),//without binding this we will loose this context.
+).toPromise();
+
+    this.dialog.open(DialogComponent,{data:{nodeid:data[0],temperature:data[1],humidity:data[2],moisture:data[3]}});
+  }
+ 
   handleError(error: any) {
     console.log("handling errors.....");
     let errorMessage = '';
@@ -86,3 +102,4 @@ console.log(this.userDevices);
   }
 
 }
+

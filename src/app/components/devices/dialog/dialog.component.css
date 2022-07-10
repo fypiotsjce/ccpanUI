@@ -1,0 +1,7 @@
+
+.mat-dialog-container{
+    transform: none;
+    width: 64vw;
+    padding: 40px;
+    border: 2px solid blue;
+}
